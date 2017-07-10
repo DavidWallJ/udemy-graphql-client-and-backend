@@ -1,11 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 // ApolloClient works with backend
-import ApolloClient, { createNetworkInterface } from 'apollo-client'
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
 // ApolloProvider works with frontend react
-import { ApolloProvider } from 'react-apollo'
-import { Router, hashHistory, Route, IndexRoute } from 'react-router'
-import App from './components/app'
+import { ApolloProvider } from 'react-apollo';
+import { Router, hashHistory, Route, IndexRoute } from 'react-router';
+import App from './components/app';
+import LoginForm from './components/loginForm';
+
 
 // we're using cookies for authentication but graphql by default doesn't send along cookies when making queries
 // the code below is the solution to this problem
@@ -30,7 +32,7 @@ const Root = () => {
     <ApolloProvider client={client}>
       <Router history={hashHistory}>
         <Route path="/" component={App}>
-
+          <Route path="login" component={LoginForm} />
         </Route>
       </Router>
     </ApolloProvider>
