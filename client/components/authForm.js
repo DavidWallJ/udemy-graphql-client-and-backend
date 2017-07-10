@@ -3,7 +3,6 @@
  */
 import React, { Component } from 'react';
 
-
 class AuthForm extends Component {
   // this is how we manage state without redux
   // this is component level state (won't e accessible outside of this component?)
@@ -16,9 +15,7 @@ class AuthForm extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    const { email, password } = this.state;
-
-    this.props.onSubmit({ email, password });
+    this.props.onSubmit(this.state);
   }
 
 
@@ -49,4 +46,4 @@ class AuthForm extends Component {
   }
 }
 
-export default AuthForm
+export default AuthForm;
