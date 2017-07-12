@@ -1,3 +1,6 @@
+
+// stuck here trying to get this style sheet to be work
+import './style/style.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 // ApolloClient works with backend
@@ -7,6 +10,9 @@ import { ApolloProvider } from 'react-apollo';
 import { Router, hashHistory, Route, IndexRoute } from 'react-router';
 import App from './components/app';
 import LoginForm from './components/loginForm';
+import SignUpForm from './components/signUpForm';
+import Dashboard from './components/dashboard';
+import requireAuth from './components/requireAuth';
 
 
 // we're using cookies for authentication but graphql by default doesn't send along cookies when making queries
@@ -25,7 +31,7 @@ const client = new ApolloClient({
   // it's going to make sure everything can be identified
   // so everything must have an 'id'
   dataIdFromObject: o => o.id
-})
+});
 
 const Root = () => {
   return (
@@ -33,6 +39,8 @@ const Root = () => {
       <Router history={hashHistory}>
         <Route path="/" component={App}>
           <Route path="login" component={LoginForm} />
+          <Route path="signup" component={SignUpForm} />
+          <Route path="dashboard" component={requireAuth(Dashboard)} />
         </Route>
       </Router>
     </ApolloProvider>
